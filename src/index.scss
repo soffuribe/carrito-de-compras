@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/*--====== Variables ======--*/
+$main-font: 'Roboto', sans-serif;
+$body-color: #f2f2f2;
+$text-color: #5C2C94;
+$text-light: #f2f2f2;
+$primary-color: #95D4E7;
+$secondary-color: #95D4E7;
+$head-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+$foot-shadow: 0px -5px 15px rgba(0, 0, 0, 0.5);
+$card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+/*--====== Mixins ======--*/
+@mixin bordered($width, $color) {
+  border: $width solid $color;
+}
+
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/*--====== Reset ======--*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $body-color;
+  color: $text-color;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/*--====== Header ======--*/
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: $primary-color;
+    padding: 1.7rem 0;
+    z-index: 1000;
+    box-shadow: none;
+
+    .container {
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+  
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+  
+    .nav_side {
+      flex: 1;
+      ul {
+        display: flex;
+        gap: 1.2rem;
+        color: #fff;
+        padding-left: 0;
+        li a {
+          font-size: 1.1rem;
+          transition: color 0.3s ease;
+          &:hover {
+            color: darken($text-color, 10%);
+          }
+        }
+      }
+    }
+  
+    .nav_left {
+      display: flex;
+      font-weight: bolder;
+      justify-content: flex-start;
+    }
+  
+    .nav_right {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .logo_center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+  
+      .logo_svg {
+        height: 50px;
+        display: block;
+      }
+    }
+  
+    .cart_icon {
+      position: relative;
+      cursor: pointer;
+  
+      img {
+        height: 30px;
+      }
+  
+      .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: darkred;
+        color: #fff;
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+        border-radius: 50%;
+      }
+    }
+  }
+
+/*--====== Home / Products Section ======--*/
+#home {
+  padding: 7rem 2rem 4rem;
+}
+
+.home_content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  text-align: center;
+
+  @media (max-width: 399px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product_card {
+  @include bordered(1px, $text-color);
+  padding-top: 1rem;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+
+  img {
+    width: 70%;
+    max-width: 260px;
+  }
+
+  .rating {
+    color: sandybrown;
+    font-size: 0.8rem;
+    letter-spacing: 1.2px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+    margin: 0.6rem 0;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .btn {
+    background-color: $primary-color;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.6rem 0;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    border: none;
+    box-shadow: none;    
+
+    &:hover {
+      color: #eee;
+    }
+
+    &.added {
+      color: green;
+    }
+  }
+}
+
+/*--====== Footer Section ======--*/
+#footer {
+  text-align: center;
+  padding: 1.4rem 0;
+
+  p {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+
+    a {
+      color: #eee;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .repo_link {
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/*--====== Cart Section ======--*/
+#cart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+
+.cart_content {
+  background-color: $secondary-color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 600px;
+  width: 100%;
+  height: 100%;
+}
+
+.cart_head {
+  padding: 1rem;
+  text-align: center;
+  box-shadow: none;
+
+  .close_btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $secondary-color;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    span {
+      font-size: 2.2rem;
+      line-height: 0.8;
+    }
+  }
+}
+
+.cart_body {
+  padding: 1.8rem 1.5rem;
+  max-height: 85%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.cart_items {
+  display: grid;
+  grid-template-columns: 0.5fr 0.7fr 0.2fr 0.1fr;
+  align-items: center;
+  gap: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cart_items_info {
+  .price {
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+}
+
+.cart_items_quantity {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  background-color: $primary-color;
+  padding: 0.3rem 0;
+
+  span {
+    font-size: 1.2rem;
+    background-color: $body-color;
+    line-height: 0.5;
+    padding: 0.4rem;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      color: #ddd;
+    }
+  }
+}
+
+.cart_items_delete {
+  font-size: 2rem;
+  line-height: 0.5;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.cart_foot {
+  @include flex(space-between, center);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: $foot-shadow;
+
+  h3 {
+    b {
+      margin-left: 0.6rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  .checkout_btn {
+    background-color: $text-color;
+    color: #000;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
