@@ -61,7 +61,7 @@ const Cart = () => {
                             <div className="cart_body">
                                 {
                                     cartQuantity === 0 ? (
-                                        <h2>Cart is empty</h2>
+                                        <h2>Carro esta vacio</h2>
                                     ) : (
                                         cartItems.map(item => {
                                             const { id, img, title, price, quantity } = item;
@@ -75,7 +75,7 @@ const Cart = () => {
 
                                                     <div className="cart_items_info">
                                                         <h4>{title}</h4>
-                                                        <h3 className="price">₹ {itemTotal.toLocaleString()}</h3>
+                                                        <h3 className="price">£{itemTotal.toLocaleString()}</h3>
                                                     </div>
 
                                                     <div className="cart_items_quantity">
@@ -100,7 +100,7 @@ const Cart = () => {
                             <div className="cart_foot">
                                 <h3>
                                     <small>Total:</small>
-                                    <b>₹ {cartTotal.toLocaleString()}</b>
+                                    <b>£ {cartTotal.toLocaleString()}</b>
                                 </h3>
 
                                 <button
